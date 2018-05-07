@@ -1,0 +1,17 @@
+﻿<html>
+<head>
+
+</head>
+<body>
+    <div id="columns">
+        @for (var i = 1; i <= 16; i++)
+        {
+            string name = "/images/Memes/meme (" + @i + ").jpg";
+            <figure>
+                <img src="@name">
+                <figcaption>Something funny here.</figcaption>
+            </figure>
+        }
+    </div>
+</body>
+</html>
