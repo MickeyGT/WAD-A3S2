@@ -22,7 +22,12 @@ namespace JokeWebsite.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            
+            return View();
+        }
+
+        public ActionResult Upload()
+        {
 
             return View();
         }
