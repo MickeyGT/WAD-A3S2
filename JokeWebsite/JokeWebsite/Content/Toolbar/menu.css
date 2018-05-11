@@ -6,11 +6,16 @@
 #nav {
     background: url('menu_bg.png') no-repeat scroll 0 0 transparent;
     clear: both;
-    font-size: 12px;
+    font-size: 14px;
     height: 58px;
     padding: 0 0 0 9px;
-    position: relative;
+    
     width: 957px;
+    position: fixed;
+    top: 3%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
 }
 #nav ul {
     background-color: #222;
@@ -113,16 +118,16 @@
     left: 13px;
 }
 #nav li:nth-of-type(2):hover ~ #lavalamp {
-    left: 90px;
+    left: 110px;
 }
 #nav li:nth-of-type(3):hover ~ #lavalamp {
-    left: 170px;
+    left: 205px;
 }
 #nav li:nth-of-type(4):hover ~ #lavalamp {
-    left: 250px;
+    left: 286px;
 }
 #nav li:nth-of-type(5):hover ~ #lavalamp {
-    left: 330px;
+    left: 365px;
 }
 #nav li:nth-of-type(6):hover ~ #lavalamp {
     left: 410px;

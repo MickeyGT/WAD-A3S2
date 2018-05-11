@@ -31,5 +31,11 @@ namespace JokeWebsite.Controllers
 
             return View();
         }
+
+        public ActionResult Categories()
+        {
+
+            return View();
+        }
     }
 }
