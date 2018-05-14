@@ -80,11 +80,17 @@ namespace JokeWebsite.Controllers
             {
                 case SignInStatus.Success:
                     {
+                        // If login is successfull, we need to log the sign-in in the database.
                         JokeWebsite.Models.ApplicationDbContext db = JokeWebsite.Models.ApplicationDbContext.Create();
+                        // Create a new log entry.
                         JokeWebsite.Models.AuthLog log = new JokeWebsite.Models.AuthLog();
+                        // Set it to current time.
                         log.time = DateTime.Now;
+                        // Get the user from the db.
                         var user = db.Users.Where(u => u.Email == model.Email).ToList();
+                        // Get the user id.
                         log.username = user[0].Id;
+                        // Add the log to the database.
                         db.authLogs.Add(log);
                         db.SaveChanges();
                         db.Dispose();

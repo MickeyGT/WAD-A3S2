@@ -1,9 +1,9 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (User.Identity.IsAuthenticated == true)
 {
-<br><br><br>
-{
-    ViewBag.Title = "Upload";
+    <br><br><br>
+    {
+        ViewBag.Title = "Upload";
     }
     <head>
         <link rel="stylesheet" href="~/Content/UploadPage.css">
@@ -15,7 +15,7 @@
 
     using (Html.BeginForm("MemeUpload", "Upload", new { }, FormMethod.Post))
     {
-
+        <!-- Selector for the category the post should be in -->
         <div class="form-group">
             <label for="Category" style="color:cornflowerblue">Category</label>
             <select class="selectpicker" name="Category" id="Category">
@@ -33,13 +33,12 @@
                 <option>Arts and Crafts</option>
             </select>
         </div>
-
+        <!-- The post's description. -->
         <div class="form-group">
             <label for="description" style="color:cornflowerblue">Description</label>
-
             <input type="text" name="description" class="form-control" id="description" required>
         </div>
-
+        <!-- Form for wether or not the post is NSFW -->
         <div class="form-group">
             <label for="NSFW" style="color:cornflowerblue">Not Safe For Work ?</label>
             <select class="selectpicker" name="NSFW" id="NSFW">
@@ -49,7 +48,7 @@
         </div>
 
 
-
+        <!-- The scripts for image upload.  -->
         <script>
             function readURL(input) {
                 if (input.files && input.files[0]) {
@@ -105,7 +104,7 @@
         </div>
 
         <br><br><br>
-
+        <!-- The submit button.  -->
         <button type="submit" class="button btn-primary" style="margin-right:50px">
             Submit Meme
         </button>

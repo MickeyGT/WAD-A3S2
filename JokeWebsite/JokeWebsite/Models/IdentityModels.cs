@@ -26,7 +26,9 @@ namespace JokeWebsite.Models
         {
         }
 
+        // The DBSet for the authentification logs.
         public DbSet<AuthLog> authLogs { get; set; }
+        // The DbSet for the Posts on the website.
         public DbSet<Post> posts { get; set; }
 
         public static ApplicationDbContext Create()
