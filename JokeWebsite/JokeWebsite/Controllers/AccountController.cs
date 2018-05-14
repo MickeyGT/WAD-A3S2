@@ -79,7 +79,17 @@ namespace JokeWebsite.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    {
+                        JokeWebsite.Models.ApplicationDbContext db = JokeWebsite.Models.ApplicationDbContext.Create();
+                        JokeWebsite.Models.AuthLog log = new JokeWebsite.Models.AuthLog();
+                        log.time = DateTime.Now;
+                        var user = db.Users.Where(u => u.Email == model.Email).ToList();
+                        log.username = user[0].Id;
+                        db.authLogs.Add(log);
+                        db.SaveChanges();
+                        db.Dispose();
+                        return RedirectToLocal(returnUrl);
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

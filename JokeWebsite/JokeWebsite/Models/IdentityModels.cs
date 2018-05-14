@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -25,9 +26,25 @@ namespace JokeWebsite.Models
         {
         }
 
+        public DbSet<AuthLog> authLogs { get; set; }
+        public DbSet<Post> posts { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        
+    }
+
+    internal sealed class DBConfiguration : DbMigrationsConfiguration<ApplicationDbContext>
+    {
+        public DBConfiguration()
+        {
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
+            CommandTimeout = 3000;
+        }
+
     }
 }

@@ -1,9 +1,114 @@
-﻿<br><br><br>
-@{
+﻿@using Microsoft.AspNet.Identity
+@if (User.Identity.IsAuthenticated == true)
+{
+<br><br><br>
+{
     ViewBag.Title = "Upload";
+    }
+    <head>
+        <link rel="stylesheet" href="~/Content/UploadPage.css">
+    </head>
+    <h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
+
+    <p>Upload a funny joke here.</p>
+
+    using (Html.BeginForm("MemeUpload", "Upload", new { }, FormMethod.Post))
+    {
+
+        <div class="form-group">
+            <label for="Category" style="color:cornflowerblue">Category</label>
+            <select class="selectpicker" name="Category" id="Category">
+                <option>Text</option>
+                <option>Music</option>
+                <option>Film/Video</option>
+                <option>Sports</option>
+                <option>Dark Humor</option>
+                <option>Food</option>
+                <option>Animals</option>
+                <option>Politics</option>
+                <option>Science</option>
+                <option>Cars</option>
+                <option>Language/Culture</option>
+                <option>Arts and Crafts</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="description" style="color:cornflowerblue">Description</label>
+
+            <input type="text" name="description" class="form-control" id="description" required>
+        </div>
+
+        <div class="form-group">
+            <label for="NSFW" style="color:cornflowerblue">Not Safe For Work ?</label>
+            <select class="selectpicker" name="NSFW" id="NSFW">
+                <option>True</option>
+                <option>False</option>
+            </select>
+        </div>
+
+
+
+        <script>
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('.image-upload-wrap').hide();
+
+                        $('.file-upload-image').attr('src', e.target.result);
+                        $('.file-upload-content').show();
+
+                        $('.image-title').html(input.files[0].name);
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
+
+                } else {
+                    removeUpload();
+                }
+            }
+
+            function removeUpload() {
+                $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+                $('.file-upload-content').hide();
+                $('.image-upload-wrap').show();
+            }
+            $('.image-upload-wrap').bind('dragover', function () {
+                $('.image-upload-wrap').addClass('image-dropping');
+            });
+            $('.image-upload-wrap').bind('dragleave', function () {
+                $('.image-upload-wrap').removeClass('image-dropping');
+            });
+
+        </script>
+
+        <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <div class="file-upload">
+            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+
+            <div class="image-upload-wrap">
+                <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                <div class="drag-text">
+                    <h3>Drag and drop a file or select add Image</h3>
+                </div>
+            </div>
+            <div class="file-upload-content">
+                <img class="file-upload-image" src="#" alt="your image" />
+                <div class="image-title-wrap">
+                    <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                </div>
+            </div>
+        </div>
+
+        <br><br><br>
+
+        <button type="submit" class="button btn-primary" style="margin-right:50px">
+            Submit Meme
+        </button>
+
+    }
 }
-
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-
-<p>Upload a funny joke here.</p>

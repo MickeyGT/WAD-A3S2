@@ -1,9 +1,17 @@
-﻿<br><br><br>
-@{
-    ViewBag.Title = "Categories";
-}
-
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-
-<p>Upload a funny joke here.</p>
+﻿<html>
+<head>
+</head>
+<body>
+    <br><br><br>
+    <div id="columns">
+        @for (var i = 1; i <= 12; i++)
+        {
+            string name = "/images/Categories/Category (" + @i + ").jpg";
+            <figure>
+                <img src="@name">
+                <figcaption>Category @i</figcaption>
+            </figure>
+        }
+    </div>
+</body>
+</html>
